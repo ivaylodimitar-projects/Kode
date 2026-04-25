@@ -1,0 +1,75 @@
+.automation-panel {
+  position: relative;
+}
+
+.automation-panel::before {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  content: "";
+  border-radius: inherit;
+  background:
+    linear-gradient(120deg, rgba(32, 245, 255, 0.18), transparent 28%),
+    linear-gradient(300deg, rgba(124, 255, 107, 0.14), transparent 34%);
+  opacity: 0.9;
+}
+
+.automation-panel > * {
+  position: relative;
+  z-index: 1;
+}
+
+.automation-grid {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.055) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.055) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+.flow-line {
+  animation: flow-pulse 2.8s ease-in-out infinite;
+  box-shadow: 0 0 24px rgba(32, 245, 255, 0.32);
+}
+
+.logo-viewport {
+  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+
+.logo-track {
+  animation: logo-scroll 24s linear infinite;
+}
+
+.logo-track:hover {
+  animation-play-state: paused;
+}
+
+@keyframes logo-scroll {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes flow-pulse {
+  0%,
+  100% {
+    transform: translateX(-10%);
+  }
+
+  50% {
+    transform: translateX(110%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .logo-track {
+    animation: none;
+  }
+
+  .flow-line {
+    animation: none;
+  }
+}
