@@ -1,13 +1,21 @@
 import { type ReactNode, useEffect, useRef, useState } from 'react'
 import {
   ArrowRight,
-  Bot,
+  Car,
   CheckCircle2,
-  Database,
-  Network,
+  Hotel,
   Phone,
   Sparkles,
+  Store,
 } from 'lucide-react'
+import automationLogo from './assets/carousel_logos/chromeautomation.png'
+import dsFashionLogo from './assets/carousel_logos/dsfashion.png'
+import karBgLogo from './assets/carousel_logos/karbglogowhite-ui.png'
+import atlanticDriveLogo from './assets/clients_logos/IMG_8239.WEBP?url'
+import car2uLogo from './assets/clients_logos/car2u.PNG?url'
+import clientDsFashionLogo from './assets/clients_logos/dsfashion.png'
+import clientKarBgLogo from './assets/clients_logos/karbglogowhite-ui.png'
+import ironImportLogo from './assets/clients_logos/IMG_7293.PNG?url'
 import './App.css'
 
 const phoneHref = 'tel:+359XXXXXXXXX'
@@ -23,48 +31,68 @@ const navLinks = [
 
 const services = [
   {
-    icon: Database,
-    title: 'CRM интеграции',
-    text: 'Свързваме продажби, заявки, клиенти и екипи в един ясен работен поток.',
-    points: ['Автоматични записи', 'Синхрон на данни', 'По-малко ръчна работа'],
+    icon: Hotel,
+    title: 'Автоматизации за туризъм',
+    text: 'Автоматизираме повтарящи се имейли, обработка на запитвания и извличане на оферти за хотели, транспорт и пакети.',
+    points: ['Темплейтни имейли', 'Оферти за хотели и транспорт', 'Проследяване на запитвания'],
   },
   {
-    icon: Network,
-    title: 'Lead Gen системи',
-    text: 'Изграждаме машини за входящи запитвания, последващи действия и отчетност.',
-    points: ['Форми и кампании', 'Квалификация на лийдове', 'Известия към екипа'],
+    icon: Car,
+    title: 'Автомобилен внос и обяви',
+    text: 'Помагаме на фирми за внос на автомобили да качват, обновяват и подреждат обяви без монотонна ръчна работа.',
+    points: ['Качване на обяви', 'Данни за автомобили', 'Автоматизирани описания'],
   },
   {
-    icon: Bot,
-    title: 'AI работни потоци',
-    text: 'Вкарваме AI там, където пести реално време: текстове, анализи и операции.',
-    points: ['AI асистенти', 'Документни процеси', 'Автоматични резюмета'],
+    icon: Store,
+    title: 'Изработка на сайтове',
+    text: 'Изграждаме бизнес сайтове, онлайн магазини и custom платформи с ясна структура, лесно управление и дизайн, който работи.',
+    points: ['Kar.bg', 'dsfashion.store', 'Shopify и custom решения'],
   },
 ]
 
 const carouselItems = [
   {
     name: 'Kar.bg',
-    mark: 'K',
-    description: 'B2B продуктова екосистема',
-    accent: 'from-[#20f5ff] to-[#7cff6b]',
+    image: karBgLogo,
+    logoClassName: 'max-h-14 max-w-48',
   },
   {
-    name: 'Автоматизация',
-    mark: 'A',
-    description: 'Процесни системи и AI потоци',
-    accent: 'from-[#7cff6b] to-[#20f5ff]',
+    name: 'DS Fashion',
+    image: dsFashionLogo,
+    logoClassName: 'max-h-20 max-w-56',
+  },
+  {
+    name: 'Chrome Automation',
+    image: automationLogo,
+    logoClassName: 'max-h-20 max-w-56',
   },
 ]
 
-const products = [
+const clientLogos = [
   {
-    title: 'Kar.bg',
-    text: 'Дигитална основа за автомобилни процеси, заявки и автоматизирана комуникация.',
+    name: 'Kar.bg',
+    image: clientKarBgLogo,
+    className: 'max-h-12 sm:max-h-14 lg:max-h-16',
   },
   {
-    title: 'Automation Hub',
-    text: 'Модулен център за CRM, AI, lead routing и вътрешни бизнес операции.',
+    name: 'Iron Import',
+    image: ironImportLogo,
+    className: 'max-h-32 sm:max-h-40 lg:max-h-44',
+  },
+  {
+    name: 'DS Fashion',
+    image: clientDsFashionLogo,
+    className: 'max-h-32 sm:max-h-40 lg:max-h-44',
+  },
+  {
+    name: 'Atlantic Drive',
+    image: atlanticDriveLogo,
+    className: 'max-h-24 sm:max-h-28 lg:max-h-32',
+  },
+  {
+    name: 'Car2U',
+    image: car2uLogo,
+    className: 'max-h-24 sm:max-h-28 lg:max-h-32',
   },
 ]
 
@@ -136,7 +164,7 @@ function Header() {
       <div className="mx-auto max-w-7xl px-4 py-3 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between gap-4">
           <a href="#" className="flex items-center gap-3 text-white">
-            <span className="flex h-9 w-9 items-center justify-center rounded-lg border border-[#20f5ff]/50 bg-[#20f5ff]/10 text-sm font-bold text-[#20f5ff] shadow-[0_0_30px_rgba(32,245,255,0.2)]">
+            <span className="flex h-9 w-9 items-center justify-center rounded-lg border border-[#0f766e]/50 bg-[#0f766e]/10 text-sm font-bold text-[#0f766e] shadow-[0_0_30px_rgba(15,118,110,0.2)]">
               K
             </span>
             <span className="text-lg font-semibold">Kode.bg</span>
@@ -147,20 +175,32 @@ function Header() {
               <a
                 key={link.href}
                 href={link.href}
-                className="text-sm text-zinc-300 transition hover:text-[#20f5ff]"
+                className="text-sm text-zinc-300 transition hover:text-[#0f766e]"
               >
                 {link.label}
               </a>
             ))}
           </nav>
 
-          <a
-            href={phoneHref}
-            className="inline-flex items-center gap-2 rounded-lg border border-[#20f5ff]/60 bg-[#20f5ff] px-4 py-2 text-sm font-semibold text-black transition hover:border-[#7cff6b] hover:bg-[#7cff6b] focus:outline-none focus:ring-2 focus:ring-[#20f5ff] focus:ring-offset-2 focus:ring-offset-[#0a0a0a]"
-          >
-            <Phone className="h-4 w-4" />
-            <span className="hidden sm:inline">Свържете се</span>
-          </a>
+          <div className="flex items-center gap-2">
+            <a
+              href={instagramUrl}
+              target="_blank"
+              rel="noreferrer"
+              aria-label="Kode.bg в Instagram"
+              className="instagram-cta inline-flex h-10 w-10 items-center justify-center rounded-lg border border-white/15 text-white shadow-[0_0_22px_rgba(193,53,132,0.2)] transition duration-300 hover:-translate-y-0.5 hover:border-white/30 hover:shadow-[0_0_30px_rgba(225,48,108,0.34)] focus:outline-none focus:ring-2 focus:ring-[#c13584] focus:ring-offset-2 focus:ring-offset-[#0a0a0a]"
+            >
+              <InstagramIcon className="h-5 w-5" />
+            </a>
+
+            <a
+              href={phoneHref}
+              className="contact-pulse inline-flex items-center gap-2 rounded-lg border border-[#0f766e]/60 bg-[#0f766e] px-4 py-2 text-sm font-semibold text-white transition hover:border-[#7cff6b] hover:bg-[#7cff6b] hover:text-black focus:outline-none focus:ring-2 focus:ring-[#0f766e] focus:ring-offset-2 focus:ring-offset-[#0a0a0a]"
+            >
+              <Phone className="h-4 w-4" />
+              <span className="hidden sm:inline">Свържете се</span>
+            </a>
+          </div>
         </div>
 
         <nav aria-label="Мобилна навигация" className="mt-3 grid grid-cols-2 gap-1 sm:grid-cols-4 md:hidden">
@@ -168,7 +208,7 @@ function Header() {
             <a
               key={link.href}
               href={link.href}
-              className="rounded-md border border-white/10 px-2 py-2 text-center text-xs text-zinc-300 transition hover:border-[#20f5ff]/50 hover:text-[#20f5ff]"
+              className="rounded-md border border-white/10 px-2 py-2 text-center text-xs text-zinc-300 transition hover:border-[#0f766e]/50 hover:text-[#0f766e]"
             >
               {link.label}
             </a>
@@ -181,9 +221,9 @@ function Header() {
 
 function AutomationVisual() {
   const steps = [
-    { label: 'CRM', value: 'sync', color: 'bg-[#20f5ff]' },
+    { label: 'CRM', value: 'sync', color: 'bg-[#0f766e]' },
     { label: 'Leads', value: '+38%', color: 'bg-[#7cff6b]' },
-    { label: 'AI', value: 'live', color: 'bg-[#20f5ff]' },
+    { label: 'AI', value: 'live', color: 'bg-[#0f766e]' },
     { label: 'ERP', value: 'ok', color: 'bg-[#7cff6b]' },
   ]
 
@@ -192,11 +232,11 @@ function AutomationVisual() {
       <div className="automation-panel rounded-lg border border-white/10 bg-white/[0.055] p-4 shadow-2xl shadow-black/40 backdrop-blur-xl sm:p-5">
         <div className="mb-5 flex items-center justify-between border-b border-white/10 pb-4">
           <div className="flex items-center gap-2">
-            <span className="h-2.5 w-2.5 rounded-full bg-[#20f5ff]" />
+            <span className="h-2.5 w-2.5 rounded-full bg-[#0f766e]" />
             <span className="h-2.5 w-2.5 rounded-full bg-[#7cff6b]" />
             <span className="h-2.5 w-2.5 rounded-full bg-white/30" />
           </div>
-          <span className="rounded-md border border-[#20f5ff]/30 px-2.5 py-1 text-xs text-[#20f5ff]">
+          <span className="rounded-md border border-[#0f766e]/30 px-2.5 py-1 text-xs text-[#0f766e]">
             automation live
           </span>
         </div>
@@ -206,7 +246,7 @@ function AutomationVisual() {
             {steps.map((step) => (
               <div
                 key={step.label}
-                className="rounded-lg border border-white/10 bg-black/40 p-3 transition hover:border-[#20f5ff]/60"
+                className="rounded-lg border border-white/10 bg-black/40 p-3 transition hover:border-[#0f766e]/60"
               >
                 <div className={`mb-5 h-2 w-2 rounded-full ${step.color}`} />
                 <p className="text-xs text-zinc-400">{step.label}</p>
@@ -216,11 +256,11 @@ function AutomationVisual() {
           </div>
 
           <div className="relative my-7 h-2 overflow-hidden rounded-md bg-white/10">
-            <div className="flow-line absolute inset-y-0 left-0 w-1/2 rounded-md bg-gradient-to-r from-[#20f5ff] via-[#7cff6b] to-[#20f5ff]" />
+            <div className="flow-line absolute inset-y-0 left-0 w-1/2 rounded-md bg-gradient-to-r from-[#0f766e] via-[#7cff6b] to-[#0f766e]" />
           </div>
 
           <div className="grid gap-3 sm:grid-cols-[1fr_auto_1fr] sm:items-center">
-            <div className="rounded-lg border border-[#20f5ff]/20 bg-[#20f5ff]/10 p-4">
+            <div className="rounded-lg border border-[#0f766e]/20 bg-[#0f766e]/10 p-4">
               <p className="text-xs text-zinc-400">Входящи заявки</p>
               <p className="mt-2 text-2xl font-semibold text-white">1 248</p>
             </div>
@@ -239,39 +279,37 @@ function AutomationVisual() {
 function Hero() {
   return (
     <section className="relative overflow-hidden px-4 pb-16 pt-14 sm:px-6 sm:pb-24 sm:pt-20 lg:px-8">
-      <div className="mx-auto grid max-w-7xl items-center gap-12 lg:grid-cols-[1.02fr_0.98fr]">
+      <div className="mx-auto grid max-w-7xl items-center gap-12 xl:grid-cols-[1.02fr_0.98fr]">
         <FadeIn className="min-w-0">
           <div className="max-w-3xl min-w-0">
             <div className="mb-6 inline-flex max-w-full items-start gap-2 rounded-lg border border-white/10 bg-white/[0.04] px-3 py-2 text-sm text-zinc-300 backdrop-blur sm:items-center">
-              <Sparkles className="h-4 w-4 text-[#20f5ff]" />
+              <Sparkles className="h-4 w-4 text-[#0f766e]" />
               <span className="min-w-0">
-                B2B автоматизация за екипи, които искат повече скорост
+                Автоматизация за бизнесите които не живеят в миналото.
               </span>
             </div>
-            <h1 className="break-words text-4xl font-semibold leading-[1.04] text-white sm:text-6xl sm:leading-[1.02] lg:text-7xl">
-              Автоматизираме бъдещето на вашия бизнес
+            <h1 className="-mx-4 w-[calc(100%+2rem)] whitespace-nowrap text-center text-base font-semibold leading-[1.04] text-white min-[390px]:text-xl sm:mx-0 sm:w-auto sm:text-left sm:text-3xl sm:leading-[1.02] md:text-4xl lg:text-5xl xl:text-[2.1rem] 2xl:text-4xl">
+              Автоматизацията е бъдещето!
             </h1>
             <p className="mt-6 max-w-2xl text-lg leading-8 text-zinc-300 sm:text-xl">
-              Kode.bg изгражда B2B системи за по-ефективни продажби, по-бърза
-              обработка на заявки и по-малко ръчна работа в ежедневните процеси.
-            </p>
+Kode няма да позволи бизнесът ти да изостане. Свържи се с нас, за да автоматизираме повтарящите се процеси и да освободим време за по-важните неща.            </p>
 
             <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-              <a
-                href={phoneHref}
-                className="inline-flex items-center justify-center gap-2 rounded-lg bg-[#20f5ff] px-6 py-3 font-semibold text-black transition hover:bg-[#7cff6b] focus:outline-none focus:ring-2 focus:ring-[#20f5ff] focus:ring-offset-2 focus:ring-offset-[#0a0a0a]"
-              >
-                Свържете се с нас
-                <ArrowRight className="h-5 w-5" />
-              </a>
               <a
                 href={instagramUrl}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center justify-center gap-2 rounded-lg border border-white/15 bg-white/[0.04] px-6 py-3 font-semibold text-white transition hover:border-[#20f5ff]/70 hover:text-[#20f5ff] focus:outline-none focus:ring-2 focus:ring-[#20f5ff] focus:ring-offset-2 focus:ring-offset-[#0a0a0a]"
+                className="instagram-cta inline-flex items-center justify-center gap-2 rounded-lg border border-white/15 px-6 py-3 font-semibold text-white shadow-[0_0_28px_rgba(193,53,132,0.24)] transition duration-300 hover:-translate-y-0.5 hover:border-white/30 hover:shadow-[0_0_38px_rgba(225,48,108,0.38)] focus:outline-none focus:ring-2 focus:ring-[#c13584] focus:ring-offset-2 focus:ring-offset-[#0a0a0a]"
               >
                 <InstagramIcon className="h-5 w-5" />
                 Instagram
+              </a>
+              <a
+                href={phoneHref}
+                className="contact-pulse inline-flex items-center justify-center gap-2 rounded-lg bg-[#0f766e] px-6 py-3 font-semibold text-white transition hover:bg-[#7cff6b] hover:text-black focus:outline-none focus:ring-2 focus:ring-[#0f766e] focus:ring-offset-2 focus:ring-offset-[#0a0a0a]"
+              >
+                Свържете се с нас
+                <ArrowRight className="h-5 w-5" />
               </a>
             </div>
 
@@ -290,7 +328,7 @@ function Hero() {
           </div>
         </FadeIn>
 
-        <FadeIn className="min-w-0 lg:pt-8">
+        <FadeIn className="min-w-0 xl:pt-8">
           <AutomationVisual />
         </FadeIn>
       </div>
@@ -299,38 +337,29 @@ function Hero() {
 }
 
 function LogoCarousel() {
-  const repeatedItems = Array.from({ length: 8 }, (_, index) => carouselItems[index % carouselItems.length])
+  const repeatedItems = Array.from({ length: 12 }, (_, index) => carouselItems[index % carouselItems.length])
 
   return (
     <section className="border-y border-white/10 bg-black/30 py-8">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mb-5 flex items-center justify-between gap-4">
-          <p className="text-sm text-zinc-400">Продукти и автоматизационни направления</p>
+          <p className="text-sm text-zinc-400">Продукти и автоматизации</p>
           <div className="hidden h-px flex-1 bg-gradient-to-r from-white/10 to-transparent sm:block" />
         </div>
 
         <div className="logo-viewport overflow-hidden">
           <div className="logo-track flex w-max gap-4">
             {repeatedItems.map((item, index) => (
-              <a
+              <div
                 key={`${item.name}-${index}`}
-                href={index % 2 === 0 ? instagramUrl : phoneHref}
-                target={index % 2 === 0 ? '_blank' : undefined}
-                rel={index % 2 === 0 ? 'noreferrer' : undefined}
-                className="group flex min-w-64 items-center gap-4 rounded-lg border border-white/10 bg-white/[0.04] px-5 py-4 grayscale transition duration-300 hover:border-[#20f5ff]/60 hover:bg-white/[0.08] hover:grayscale-0"
+                className="group flex h-28 min-w-64 items-center justify-center rounded-lg border border-white/10 bg-white/[0.04] px-6 py-4 grayscale transition duration-300 hover:border-[#0f766e]/60 hover:bg-white/[0.08] hover:grayscale-0"
               >
-                <span
-                  className={`flex h-12 w-12 items-center justify-center rounded-lg bg-gradient-to-br ${item.accent} text-lg font-bold text-black`}
-                >
-                  {item.mark}
-                </span>
-                <span>
-                  <span className="block text-lg font-semibold text-white">{item.name}</span>
-                  <span className="mt-1 block text-sm text-zinc-400 group-hover:text-zinc-200">
-                    {item.description}
-                  </span>
-                </span>
-              </a>
+                <img
+                  src={item.image}
+                  alt={item.name}
+                  className={`${item.logoClassName} w-auto object-contain transition duration-300 group-hover:scale-105`}
+                />
+              </div>
             ))}
           </div>
         </div>
@@ -344,15 +373,13 @@ function About() {
     <section id="about" className="px-4 py-20 sm:px-6 lg:px-8">
       <FadeIn className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
         <div>
-          <p className="mb-3 text-sm font-semibold text-[#20f5ff]">За нас</p>
+          <p className="mb-3 text-sm font-semibold text-[#0f766e]">За нас</p>
           <h2 className="text-3xl font-semibold text-white sm:text-4xl">
-            Строим процеси, които работят тихо, точно и постоянно.
+            Изграждаме автоматизирани процеси, които просто вършат работа — точно, надеждно и без излишен шум.
           </h2>
         </div>
         <p className="text-lg leading-8 text-zinc-300">
-          Kode.bg помага на B2B компании да подредят данните, задачите и
-          комуникацията си в автоматизирани системи. Фокусът е практичен:
-          по-малко хаос между инструментите, повече видимост и по-бързи решения.
+          Kode.bg помага на бизнеса да се освободи от повтарящата се ежедневна работа чрез интелигентна автоматизация. Вместо ръчни процеси и загубено време, работата протича по-гладко, по-бързо и с по-малко грешки — така екипът може да се фокусира върху растежа, а не върху рутината.
         </p>
       </FadeIn>
     </section>
@@ -376,8 +403,8 @@ function Services() {
 
             return (
               <FadeIn key={service.title} className="h-full">
-                <article className="group flex h-full flex-col rounded-lg border border-white/10 bg-white/[0.04] p-6 backdrop-blur-xl transition duration-300 hover:-translate-y-1 hover:border-[#20f5ff]/60 hover:bg-white/[0.065]">
-                  <div className="mb-6 flex h-12 w-12 items-center justify-center rounded-lg border border-[#20f5ff]/30 bg-[#20f5ff]/10 text-[#20f5ff] transition group-hover:border-[#7cff6b]/50 group-hover:text-[#7cff6b]">
+                <article className="group flex h-full flex-col rounded-lg border border-white/10 bg-white/[0.04] p-6 backdrop-blur-xl transition duration-300 hover:-translate-y-1 hover:border-[#0f766e]/60 hover:bg-white/[0.065]">
+                  <div className="mb-6 flex h-12 w-12 items-center justify-center rounded-lg border border-[#0f766e]/30 bg-[#0f766e]/10 text-[#0f766e] transition group-hover:border-[#7cff6b]/50 group-hover:text-[#7cff6b]">
                     <Icon className="h-6 w-6" />
                   </div>
                   <h3 className="text-xl font-semibold text-white">{service.title}</h3>
@@ -400,41 +427,182 @@ function Services() {
   )
 }
 
-function Products() {
+function TrustSlider() {
+  const targetCount = 50
+  const ref = useRef<HTMLDivElement | null>(null)
+  const [hasStarted, setHasStarted] = useState(false)
+  const [count, setCount] = useState(0)
+
+  useEffect(() => {
+    const element = ref.current
+
+    if (!element) {
+      return
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setHasStarted(true)
+          observer.unobserve(entry.target)
+        }
+      },
+      { rootMargin: '0px 0px -90px', threshold: 0.35 },
+    )
+
+    observer.observe(element)
+
+    return () => observer.disconnect()
+  }, [])
+
+  useEffect(() => {
+    if (!hasStarted) {
+      return
+    }
+
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+
+    if (reduceMotion) {
+      const frameId = requestAnimationFrame(() => setCount(targetCount))
+      return () => cancelAnimationFrame(frameId)
+    }
+
+    let frameId = 0
+    const duration = 1600
+    const startTime = performance.now()
+
+    const animate = (currentTime: number) => {
+      const elapsed = currentTime - startTime
+      const progress = Math.min(elapsed / duration, 1)
+      const easedProgress = 1 - (1 - progress) ** 3
+
+      setCount(Math.round(easedProgress * targetCount))
+
+      if (progress < 1) {
+        frameId = requestAnimationFrame(animate)
+      }
+    }
+
+    frameId = requestAnimationFrame(animate)
+
+    return () => cancelAnimationFrame(frameId)
+  }, [hasStarted])
+
+  const progress = (count / targetCount) * 100
+  const displayCount = count >= targetCount ? `${targetCount}+` : count
+  const thumbPosition = `calc(${progress}% + ${14 - progress * 0.28}px)`
+  const repeatedClientLogos = [...clientLogos, ...clientLogos]
+
   return (
-    <section id="products" className="px-4 py-20 sm:px-6 lg:px-8">
-      <div className="mx-auto max-w-7xl">
-        <FadeIn className="mb-10 flex flex-col justify-between gap-5 md:flex-row md:items-end">
-          <div className="max-w-2xl">
-            <p className="mb-3 text-sm font-semibold text-[#20f5ff]">Продукти</p>
+    <section className="border-y border-white/10 bg-black px-4 py-16 sm:px-6 lg:px-8">
+      <FadeIn className="mx-auto max-w-7xl">
+        <div
+          ref={ref}
+          className="grid gap-8 rounded-lg border border-white/10 bg-white/[0.04] p-6 shadow-2xl shadow-black/30 backdrop-blur-xl transition duration-300 hover:-translate-y-1 hover:border-[#0f766e]/60 hover:bg-white/[0.065] md:grid-cols-[0.78fr_1.22fr] md:items-center md:p-8"
+        >
+          <div>
+            <p className="mb-3 text-sm font-semibold text-[#0f766e]">Доверие</p>
             <h2 className="text-3xl font-semibold text-white sm:text-4xl">
-              Готови основи за по-бързо внедряване.
+              Хора и бизнеси които се довериха на Kode
             </h2>
           </div>
-          <a
-            href={phoneHref}
-            className="inline-flex w-fit items-center gap-2 rounded-lg border border-[#7cff6b]/50 px-5 py-3 font-semibold text-[#7cff6b] transition hover:border-[#20f5ff]/60 hover:text-[#20f5ff]"
-          >
-            Обсъдете проект
-            <ArrowRight className="h-5 w-5" />
-          </a>
-        </FadeIn>
 
-        <div className="grid gap-4 md:grid-cols-2">
-          {products.map((product) => (
-            <FadeIn key={product.title}>
-              <article className="relative overflow-hidden rounded-lg border border-white/10 bg-[#0d0d0d] p-7 transition hover:border-[#7cff6b]/50">
-                <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-[#20f5ff] via-[#7cff6b] to-transparent" />
-                <h3 className="text-2xl font-semibold text-white">{product.title}</h3>
-                <p className="mt-4 leading-7 text-zinc-300">{product.text}</p>
-              </article>
-            </FadeIn>
-          ))}
+          <div className="min-w-0">
+            <div className="mb-5 flex items-end justify-between gap-4">
+              <span className="text-sm text-zinc-400">Клиенти и партньори</span>
+              <span className="text-6xl font-semibold leading-none text-white sm:text-7xl">
+                {displayCount}
+              </span>
+            </div>
+
+            <div
+              className="relative h-4 overflow-hidden rounded-lg bg-white/10"
+              role="meter"
+              aria-label="Хора, които се довериха на Kode.bg"
+              aria-valuemin={0}
+              aria-valuemax={targetCount}
+              aria-valuenow={count}
+              aria-valuetext={`${displayCount} души`}
+            >
+              <div
+                className="trust-slider-fill h-full rounded-lg bg-gradient-to-r from-[#0f766e] to-[#7cff6b]"
+                style={{ width: `${progress}%` }}
+              />
+              <div
+                className="trust-slider-thumb absolute top-1/2 h-7 w-7 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-black bg-white shadow-[0_0_24px_rgba(15,118,110,0.5)]"
+                style={{ left: thumbPosition }}
+              />
+            </div>
+
+            <div className="mt-4 grid grid-cols-3 text-sm text-zinc-500">
+              <span>0</span>
+              <span className="text-center">25</span>
+              <span className="text-right">50+</span>
+            </div>
+          </div>
         </div>
-      </div>
+
+        <div className="mb-5 mt-10 flex items-center justify-between gap-4">
+          <p className="text-sm text-zinc-400">Бизнеси, които ни се довериха</p>
+          <div className="hidden h-px flex-1 bg-gradient-to-r from-white/10 to-transparent sm:block" />
+        </div>
+
+        <div className="logo-viewport overflow-hidden">
+          <div className="logo-track flex w-max gap-8">
+            {repeatedClientLogos.map((client, index) => (
+              <div
+                key={`${client.name}-${index}`}
+                className="group flex h-32 min-w-56 items-center justify-center px-4 sm:h-40 sm:min-w-64 lg:h-44 lg:min-w-72"
+              >
+                <img
+                  src={client.image}
+                  alt={client.name}
+                  className={`${client.className} h-auto w-auto max-w-full object-contain transition duration-300 group-hover:scale-105`}
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+      </FadeIn>
     </section>
   )
 }
+
+// function Products() {
+//   return (
+//     <section id="products" className="px-4 py-20 sm:px-6 lg:px-8">
+//       <div className="mx-auto max-w-7xl">
+//         <FadeIn className="mb-10 flex flex-col justify-between gap-5 md:flex-row md:items-end">
+//           <div className="max-w-2xl">
+//             <p className="mb-3 text-sm font-semibold text-[#0f766e]">Продукти</p>
+//             <h2 className="text-3xl font-semibold text-white sm:text-4xl">
+//               Готови основи за по-бързо внедряване.
+//             </h2>
+//           </div>
+//           <a
+//             href={phoneHref}
+//             className="inline-flex w-fit items-center gap-2 rounded-lg border border-[#7cff6b]/50 px-5 py-3 font-semibold text-[#7cff6b] transition hover:border-[#0f766e]/60 hover:text-[#0f766e]"
+//           >
+//             Обсъдете проект
+//             <ArrowRight className="h-5 w-5" />
+//           </a>
+//         </FadeIn>
+
+//         <div className="grid gap-4 md:grid-cols-2">
+//           {products.map((product) => (
+//             <FadeIn key={product.title}>
+//               <article className="relative overflow-hidden rounded-lg border border-white/10 bg-[#0d0d0d] p-7 transition hover:border-[#7cff6b]/50">
+//                 <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-[#0f766e] via-[#7cff6b] to-transparent" />
+//                 <h3 className="text-2xl font-semibold text-white">{product.title}</h3>
+//                 <p className="mt-4 leading-7 text-zinc-300">{product.text}</p>
+//               </article>
+//             </FadeIn>
+//           ))}
+//         </div>
+//       </div>
+//     </section>
+//   )
+// }
 
 function Contact() {
   return (
@@ -447,7 +615,7 @@ function Contact() {
           </h2>
           <a
             href={phoneHref}
-            className="mt-6 inline-flex items-center gap-3 text-xl font-semibold text-[#20f5ff] transition hover:text-[#7cff6b]"
+            className="mt-6 inline-flex items-center gap-3 text-xl font-semibold text-[#0f766e] transition hover:text-[#7cff6b]"
           >
             <Phone className="h-6 w-6" />
             {phoneLabel}
@@ -459,9 +627,9 @@ function Contact() {
           target="_blank"
           rel="noreferrer"
           aria-label="Kode.bg в Instagram"
-          className="group flex h-24 w-24 items-center justify-center rounded-lg border border-white/10 bg-white/[0.04] text-white transition hover:border-[#20f5ff]/70 hover:bg-[#20f5ff]/10 sm:h-28 sm:w-28"
+          className="group flex h-24 w-24 items-center justify-center rounded-lg border border-white/10 bg-white/[0.04] text-white transition hover:border-[#0f766e]/70 hover:bg-[#0f766e]/10 sm:h-28 sm:w-28"
         >
-          <InstagramIcon className="h-12 w-12 transition group-hover:scale-110 group-hover:text-[#20f5ff] sm:h-14 sm:w-14" />
+          <InstagramIcon className="h-12 w-12 transition group-hover:scale-110 group-hover:text-[#0f766e] sm:h-14 sm:w-14" />
         </a>
       </FadeIn>
 
@@ -477,14 +645,15 @@ function App() {
   return (
     <div className="relative min-h-screen overflow-x-hidden bg-[#0a0a0a] text-white">
       <div className="pointer-events-none fixed inset-0 -z-10 bg-[linear-gradient(rgba(255,255,255,0.055)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.055)_1px,transparent_1px)] bg-[size:72px_72px] [mask-image:linear-gradient(to_bottom,rgba(0,0,0,0.75),transparent_78%)]" />
-      <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-96 bg-[linear-gradient(180deg,rgba(32,245,255,0.12),rgba(124,255,107,0.04),transparent)]" />
+      <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-96 bg-[linear-gradient(180deg,rgba(15,118,110,0.12),rgba(124,255,107,0.04),transparent)]" />
       <Header />
       <main>
         <Hero />
         <LogoCarousel />
         <About />
         <Services />
-        <Products />
+        <TrustSlider />
+        {/* <Products /> */}
       </main>
       <Contact />
     </div>
