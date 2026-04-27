@@ -19,8 +19,10 @@ import ironImportLogo from './assets/clients_logos/IMG_7293.PNG?url'
 import './App.css'
 
 const phoneHref = 'tel:+359XXXXXXXXX'
-const phoneLabel = '+359 XX XXX XXXX'
+const phoneLabel = '+359 88 7286159'
 const instagramUrl = 'https://www.instagram.com/kode.bg/'
+const karBgUrl = 'https://www.kar.bg/'
+const dsFashionUrl = 'https://dsfashion.shop/'
 
 const navLinks = [
   { label: 'За нас', href: '#about' },
@@ -46,7 +48,40 @@ const services = [
     icon: Store,
     title: 'Изработка на сайтове',
     text: 'Изграждаме бизнес сайтове, онлайн магазини и custom платформи с ясна структура, лесно управление и дизайн, който работи.',
-    points: ['Kar.bg', 'dsfashion.store', 'Shopify и custom решения'],
+    points: ['Kar.bg', 'dsfashion.shop', 'Shopify и custom решения'],
+  },
+]
+
+const faqs = [
+  {
+    question: 'Какво представлява бизнес автоматизацията?',
+    answer:
+      'Бизнес автоматизацията премахва повтарящи се ръчни задачи чрез системи, които обработват заявки, имейли, оферти, данни и вътрешни процеси по-бързо и с по-малко грешки.',
+  },
+  {
+    question: 'За какви бизнеси Kode.bg изгражда автоматизации?',
+    answer:
+      'Работим с компании в туризма, автомобилния внос, онлайн търговията и услуги, където има монотонни процеси като темплейтни имейли, качване на обяви, обработка на оферти и синхронизация на данни.',
+  },
+  {
+    question: 'Можете ли да автоматизирате имейли и оферти в туристическия сектор?',
+    answer:
+      'Да. Изграждаме автоматизации за повтарящи се имейли, обработка на запитвания и извличане на оферти за хотели, транспорт и туристически пакети.',
+  },
+  {
+    question: 'Помагате ли на фирми за внос на автомобили?',
+    answer:
+      'Да. Можем да автоматизираме качване и обновяване на обяви, подготовка на описания, структуриране на данни за автомобили и други повтарящи се задачи.',
+  },
+  {
+    question: 'Изработвате ли сайтове и онлайн магазини?',
+    answer:
+      'Да. Изграждаме бизнес сайтове, Shopify магазини и custom платформи с ясна структура, лесно управление и дизайн, съобразен с целите на бизнеса.',
+  },
+  {
+    question: 'Как започва един проект с Kode.bg?',
+    answer:
+      'Започваме с кратък разговор за процесите, които губят време. След това описваме решение, приоритети и стъпки за внедряване, така че автоматизацията да носи реална полза още от началото.',
   },
 ]
 
@@ -55,11 +90,13 @@ const carouselItems = [
     name: 'Kar.bg',
     image: karBgLogo,
     logoClassName: 'max-h-14 max-w-48',
+    url: karBgUrl,
   },
   {
     name: 'DS Fashion',
     image: dsFashionLogo,
-    logoClassName: 'max-h-20 max-w-56',
+    logoClassName: 'max-h-24 max-w-64',
+    url: dsFashionUrl,
   },
   {
     name: 'Chrome Automation',
@@ -73,6 +110,7 @@ const clientLogos = [
     name: 'Kar.bg',
     image: clientKarBgLogo,
     className: 'max-h-12 sm:max-h-14 lg:max-h-16',
+    url: karBgUrl,
   },
   {
     name: 'Iron Import',
@@ -83,6 +121,7 @@ const clientLogos = [
     name: 'DS Fashion',
     image: clientDsFashionLogo,
     className: 'max-h-32 sm:max-h-40 lg:max-h-44',
+    url: dsFashionUrl,
   },
   {
     name: 'Atlantic Drive',
@@ -160,9 +199,9 @@ function FadeIn({ children, className = '' }: FadeInProps) {
 
 function Header() {
   return (
-    <header className="sticky top-0 z-50 border-b border-white/10 bg-[#0a0a0a]/80 backdrop-blur-xl">
-      <div className="mx-auto max-w-7xl px-4 py-3 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between gap-4">
+    <header className="fixed inset-x-0 bottom-0 z-50 border-t border-white/10 bg-[#0a0a0a]/80 backdrop-blur-xl md:bottom-auto md:top-0 md:border-b md:border-t-0">
+      <div className="mx-auto max-w-7xl px-4 py-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))] sm:px-6 md:pb-3 lg:px-8">
+        <div className="flex items-center justify-between gap-3 sm:gap-4">
           <a href="#" className="flex items-center gap-3 text-white">
             <span className="flex h-9 w-9 items-center justify-center rounded-lg border border-[#0f766e]/50 bg-[#0f766e]/10 text-sm font-bold text-[#0f766e] shadow-[0_0_30px_rgba(15,118,110,0.2)]">
               K
@@ -182,7 +221,7 @@ function Header() {
             ))}
           </nav>
 
-          <div className="flex items-center gap-2">
+          <div className="flex shrink-0 items-center gap-2">
             <a
               href={instagramUrl}
               target="_blank"
@@ -195,25 +234,14 @@ function Header() {
 
             <a
               href={phoneHref}
-              className="contact-pulse inline-flex items-center gap-2 rounded-lg border border-[#0f766e]/60 bg-[#0f766e] px-4 py-2 text-sm font-semibold text-white transition hover:border-[#7cff6b] hover:bg-[#7cff6b] hover:text-black focus:outline-none focus:ring-2 focus:ring-[#0f766e] focus:ring-offset-2 focus:ring-offset-[#0a0a0a]"
+              className="contact-pulse inline-flex h-10 items-center justify-center gap-1.5 rounded-lg border border-[#0f766e]/60 bg-[#0f766e] px-3 text-xs font-semibold text-white transition hover:border-[#7cff6b] hover:bg-[#7cff6b] hover:text-black focus:outline-none focus:ring-2 focus:ring-[#0f766e] focus:ring-offset-2 focus:ring-offset-[#0a0a0a] sm:gap-2 sm:px-4 sm:text-sm"
             >
               <Phone className="h-4 w-4" />
-              <span className="hidden sm:inline">Свържете се</span>
+              <span>Свържете се</span>
             </a>
           </div>
         </div>
 
-        <nav aria-label="Мобилна навигация" className="mt-3 grid grid-cols-2 gap-1 sm:grid-cols-4 md:hidden">
-          {navLinks.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              className="rounded-md border border-white/10 px-2 py-2 text-center text-xs text-zinc-300 transition hover:border-[#0f766e]/50 hover:text-[#0f766e]"
-            >
-              {link.label}
-            </a>
-          ))}
-        </nav>
       </div>
     </header>
   )
@@ -350,16 +378,32 @@ function LogoCarousel() {
         <div className="logo-viewport overflow-hidden">
           <div className="logo-track flex w-max gap-4">
             {repeatedItems.map((item, index) => (
-              <div
-                key={`${item.name}-${index}`}
-                className="group flex h-28 min-w-64 items-center justify-center rounded-lg border border-white/10 bg-white/[0.04] px-6 py-4 grayscale transition duration-300 hover:border-[#0f766e]/60 hover:bg-white/[0.08] hover:grayscale-0"
-              >
-                <img
-                  src={item.image}
-                  alt={item.name}
-                  className={`${item.logoClassName} w-auto object-contain transition duration-300 group-hover:scale-105`}
-                />
-              </div>
+              item.url ? (
+                <a
+                  key={`${item.name}-${index}`}
+                  href={item.url}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="group flex h-28 min-w-64 items-center justify-center rounded-lg border border-white/10 bg-white/[0.04] px-6 py-4 transition duration-300 hover:border-[#0f766e]/60 hover:bg-white/[0.08]"
+                >
+                  <img
+                    src={item.image}
+                    alt={item.name}
+                    className={`${item.logoClassName} w-auto object-contain transition duration-300 group-hover:scale-105`}
+                  />
+                </a>
+              ) : (
+                <div
+                  key={`${item.name}-${index}`}
+                  className="group flex h-28 min-w-64 items-center justify-center rounded-lg border border-white/10 bg-white/[0.04] px-6 py-4 transition duration-300 hover:border-[#0f766e]/60 hover:bg-white/[0.08]"
+                >
+                  <img
+                    src={item.image}
+                    alt={item.name}
+                    className={`${item.logoClassName} w-auto object-contain transition duration-300 group-hover:scale-105`}
+                  />
+                </div>
+              )
             ))}
           </div>
         </div>
@@ -550,20 +594,91 @@ function TrustSlider() {
         <div className="logo-viewport overflow-hidden">
           <div className="logo-track flex w-max gap-8">
             {repeatedClientLogos.map((client, index) => (
-              <div
-                key={`${client.name}-${index}`}
-                className="group flex h-32 min-w-56 items-center justify-center px-4 sm:h-40 sm:min-w-64 lg:h-44 lg:min-w-72"
-              >
-                <img
-                  src={client.image}
-                  alt={client.name}
-                  className={`${client.className} h-auto w-auto max-w-full object-contain transition duration-300 group-hover:scale-105`}
-                />
-              </div>
+              client.url ? (
+                <a
+                  key={`${client.name}-${index}`}
+                  href={client.url}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="group flex h-32 min-w-56 items-center justify-center px-4 sm:h-40 sm:min-w-64 lg:h-44 lg:min-w-72"
+                >
+                  <img
+                    src={client.image}
+                    alt={client.name}
+                    className={`${client.className} h-auto w-auto max-w-full object-contain transition duration-300 group-hover:scale-105`}
+                  />
+                </a>
+              ) : (
+                <div
+                  key={`${client.name}-${index}`}
+                  className="group flex h-32 min-w-56 items-center justify-center px-4 sm:h-40 sm:min-w-64 lg:h-44 lg:min-w-72"
+                >
+                  <img
+                    src={client.image}
+                    alt={client.name}
+                    className={`${client.className} h-auto w-auto max-w-full object-contain transition duration-300 group-hover:scale-105`}
+                  />
+                </div>
+              )
             ))}
           </div>
         </div>
       </FadeIn>
+    </section>
+  )
+}
+
+function FAQ() {
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqs.map((faq) => ({
+      '@type': 'Question',
+      name: faq.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: faq.answer,
+      },
+    })),
+  }
+
+  return (
+    <section id="faq" className="px-4 py-20 sm:px-6 lg:px-8">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+      <div className="mx-auto max-w-7xl">
+        <FadeIn className="grid gap-8 lg:grid-cols-[0.82fr_1.18fr] lg:items-start">
+          <div className="max-w-2xl">
+            <p className="mb-3 text-sm font-semibold text-[#0f766e]">FAQ</p>
+            <h2 className="text-3xl font-semibold text-white sm:text-4xl">
+              Често задавани въпроси
+            </h2>
+            <p className="mt-4 leading-7 text-zinc-300">
+              Кратки отговори за автоматизации, сайтове и начина, по който
+              започваме работа по нов проект.
+            </p>
+          </div>
+
+          <div className="space-y-3">
+            {faqs.map((faq) => (
+              <details
+                key={faq.question}
+                className="group rounded-lg border border-white/10 bg-white/[0.04] p-5 backdrop-blur-xl transition duration-300 open:border-[#0f766e]/60 open:bg-white/[0.065]"
+              >
+                <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-lg font-semibold text-white">
+                  <span>{faq.question}</span>
+                  <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg border border-white/10 text-[#0f766e] transition group-open:rotate-45 group-open:border-[#7cff6b]/50 group-open:text-[#7cff6b]">
+                    +
+                  </span>
+                </summary>
+                <p className="mt-4 leading-7 text-zinc-300">{faq.answer}</p>
+              </details>
+            ))}
+          </div>
+        </FadeIn>
+      </div>
     </section>
   )
 }
@@ -611,15 +726,24 @@ function Contact() {
         <div>
           <p className="mb-3 text-sm font-semibold text-[#7cff6b]">Контакти</p>
           <h2 className="text-3xl font-semibold text-white sm:text-4xl">
-            Готови ли сте да махнем ръчната работа от процеса?
+            Нека бизнесът Ви продължава да работи — дори извън работно време.
           </h2>
-          <a
-            href={phoneHref}
-            className="mt-6 inline-flex items-center gap-3 text-xl font-semibold text-[#0f766e] transition hover:text-[#7cff6b]"
-          >
-            <Phone className="h-6 w-6" />
-            {phoneLabel}
-          </a>
+          <div className="mt-6 flex flex-col items-start gap-3">
+            <a
+              href={phoneHref}
+              className="inline-flex items-center gap-3 text-xl font-semibold text-[#0f766e] transition hover:text-[#7cff6b]"
+            >
+              <Phone className="h-6 w-6" />
+              {phoneLabel}
+            </a>
+            <a
+              href={phoneHref}
+              className="inline-flex items-center gap-3 text-xl font-semibold text-[#0f766e] transition hover:text-[#7cff6b]"
+            >
+              <Phone className="h-6 w-6" />
+              {phoneLabel}
+            </a>
+          </div>
         </div>
 
         <a
@@ -635,7 +759,7 @@ function Contact() {
 
       <div className="mx-auto mt-12 flex max-w-7xl flex-col justify-between gap-4 border-t border-white/10 pt-6 text-sm text-zinc-500 sm:flex-row">
         <p>© 2026 Kode.bg</p>
-        <p>Business process automation for modern B2B teams.</p>
+        <p>Ние автоматизираме. Ти растеш.</p>
       </div>
     </footer>
   )
@@ -647,13 +771,14 @@ function App() {
       <div className="pointer-events-none fixed inset-0 -z-10 bg-[linear-gradient(rgba(255,255,255,0.055)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.055)_1px,transparent_1px)] bg-[size:72px_72px] [mask-image:linear-gradient(to_bottom,rgba(0,0,0,0.75),transparent_78%)]" />
       <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-96 bg-[linear-gradient(180deg,rgba(15,118,110,0.12),rgba(124,255,107,0.04),transparent)]" />
       <Header />
-      <main>
+      <main className="pb-24 md:pb-0 md:pt-16">
         <Hero />
         <LogoCarousel />
         <About />
         <Services />
         <TrustSlider />
         {/* <Products /> */}
+        <FAQ />
       </main>
       <Contact />
     </div>
