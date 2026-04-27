@@ -11,6 +11,7 @@ import {
 import automationLogo from './assets/carousel_logos/chromeautomation.png'
 import dsFashionLogo from './assets/carousel_logos/dsfashion.png'
 import karBgLogo from './assets/carousel_logos/karbglogowhite-ui.png'
+import kodeLogo from './assets/company_images/kode_logo.png'
 import atlanticDriveLogo from './assets/clients_logos/IMG_8239.WEBP?url'
 import car2uLogo from './assets/clients_logos/car2u.PNG?url'
 import clientDsFashionLogo from './assets/clients_logos/dsfashion.png'
@@ -27,7 +28,7 @@ const dsFashionUrl = 'https://dsfashion.shop/'
 const navLinks = [
   { label: 'За нас', href: '#about' },
   { label: 'Услуги', href: '#services' },
-  { label: 'Продукти', href: '#products' },
+  { label: 'Клиенти', href: '#clients', isAccent: true },
   { label: 'Контакти', href: '#contact' },
 ]
 
@@ -202,11 +203,12 @@ function Header() {
     <header className="fixed inset-x-0 bottom-0 z-50 border-t border-white/10 bg-[#0a0a0a]/80 backdrop-blur-xl md:bottom-auto md:top-0 md:border-b md:border-t-0">
       <div className="mx-auto max-w-7xl px-4 py-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))] sm:px-6 md:pb-3 lg:px-8">
         <div className="flex items-center justify-between gap-3 sm:gap-4">
-          <a href="#" className="flex items-center gap-3 text-white">
-            <span className="flex h-9 w-9 items-center justify-center rounded-lg border border-[#0f766e]/50 bg-[#0f766e]/10 text-sm font-bold text-[#0f766e] shadow-[0_0_30px_rgba(15,118,110,0.2)]">
-              K
-            </span>
-            <span className="text-lg font-semibold">Kode.bg</span>
+          <a href="#" className="flex min-w-0 items-center text-white" aria-label="Kode.bg">
+            <img
+              src={kodeLogo}
+              alt="Kode.bg"
+              className="h-16 w-auto max-w-[17rem] object-contain sm:h-20 sm:max-w-[22rem]"
+            />
           </a>
 
           <nav aria-label="Основна навигация" className="hidden items-center gap-7 md:flex">
@@ -214,7 +216,9 @@ function Header() {
               <a
                 key={link.href}
                 href={link.href}
-                className="text-sm text-zinc-300 transition hover:text-[#0f766e]"
+                className={`text-sm transition hover:text-[#0f766e] ${
+                  link.isAccent ? 'font-semibold text-[#0f766e]' : 'text-zinc-300'
+                }`}
               >
                 {link.label}
               </a>
@@ -310,6 +314,11 @@ function Hero() {
       <div className="mx-auto grid max-w-7xl items-center gap-12 xl:grid-cols-[1.02fr_0.98fr]">
         <FadeIn className="min-w-0">
           <div className="max-w-3xl min-w-0">
+            <img
+              src={kodeLogo}
+              alt="Kode.bg"
+              className="mx-auto mb-7 h-24 w-auto max-w-[calc(100vw-2rem)] object-contain sm:hidden"
+            />
             <div className="mb-6 inline-flex max-w-full items-start gap-2 rounded-lg border border-white/10 bg-white/[0.04] px-3 py-2 text-sm text-zinc-300 backdrop-blur sm:items-center">
               <Sparkles className="h-4 w-4 text-[#0f766e]" />
               <span className="min-w-0">
@@ -343,9 +352,9 @@ Kode няма да позволи бизнесът ти да изостане. �
 
             <div className="mt-10 grid max-w-2xl grid-cols-1 gap-3 sm:grid-cols-3">
               {[
-                ['3x', 'по-бързи операции'],
-                ['24/7', 'дигитални процеси'],
-                ['0', 'излишни таблици'],
+                ['3x', 'По-бързи операции'],
+                ['24/7', 'Поддръжка'],
+                ['0', 'Повтаряща се работа'],
               ].map(([value, label]) => (
                 <div key={label} className="rounded-lg border border-white/10 bg-white/[0.04] p-4">
                   <p className="text-2xl font-semibold text-white">{value}</p>
@@ -538,7 +547,7 @@ function TrustSlider() {
   const repeatedClientLogos = [...clientLogos, ...clientLogos]
 
   return (
-    <section className="border-y border-white/10 bg-black px-4 py-16 sm:px-6 lg:px-8">
+    <section id="clients" className="border-y border-white/10 bg-black px-4 py-16 sm:px-6 lg:px-8">
       <FadeIn className="mx-auto max-w-7xl">
         <div
           ref={ref}
@@ -746,7 +755,7 @@ function Contact() {
           </div>
         </div>
 
-        <a
+        {/* <a
           href={instagramUrl}
           target="_blank"
           rel="noreferrer"
@@ -754,7 +763,7 @@ function Contact() {
           className="group flex h-24 w-24 items-center justify-center rounded-lg border border-white/10 bg-white/[0.04] text-white transition hover:border-[#0f766e]/70 hover:bg-[#0f766e]/10 sm:h-28 sm:w-28"
         >
           <InstagramIcon className="h-12 w-12 transition group-hover:scale-110 group-hover:text-[#0f766e] sm:h-14 sm:w-14" />
-        </a>
+        </a> */}
       </FadeIn>
 
       <div className="mx-auto mt-12 flex max-w-7xl flex-col justify-between gap-4 border-t border-white/10 pt-6 text-sm text-zinc-500 sm:flex-row">
@@ -771,7 +780,7 @@ function App() {
       <div className="pointer-events-none fixed inset-0 -z-10 bg-[linear-gradient(rgba(255,255,255,0.055)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.055)_1px,transparent_1px)] bg-[size:72px_72px] [mask-image:linear-gradient(to_bottom,rgba(0,0,0,0.75),transparent_78%)]" />
       <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-96 bg-[linear-gradient(180deg,rgba(15,118,110,0.12),rgba(124,255,107,0.04),transparent)]" />
       <Header />
-      <main className="pb-24 md:pb-0 md:pt-16">
+      <main className="md:pb-0 md:pt-16">
         <Hero />
         <LogoCarousel />
         <About />
