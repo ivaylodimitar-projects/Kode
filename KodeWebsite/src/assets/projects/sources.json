@@ -1,0 +1,60 @@
+{
+  "capturedOn": "2026-10-27",
+  "method": "Actual public website screenshots captured in Chrome. No compositing or generated imagery. Optional cookies declined and promotional dialogs dismissed where present.",
+  "attributionNote": "The screenshots and descriptions document the clients' public websites. They do not establish which features Kode built or business results.",
+  "assets": [
+    {
+      "file": "kar-bg.jpg",
+      "url": "https://www.kar.bg/",
+      "width": 1440,
+      "height": 1000,
+      "view": "Homepage vehicle search and filters",
+      "facts": "Automotive listings platform with category, make, location, fuel and transmission filters."
+    },
+    {
+      "file": "kar-bg-listings.jpg",
+      "url": "https://www.kar.bg/",
+      "width": 1440,
+      "height": 1000,
+      "view": "Homepage scrolled to recent listings, with the original sticky branded header visible",
+      "facts": "Vehicle cards show photos, model, year, price, mileage, fuel and location. Listing content and prices are a snapshot, not current offers on Kode."
+    },
+    {
+      "file": "kar-bg-mobile.jpg",
+      "url": "https://www.kar.bg/",
+      "width": 390,
+      "height": 844,
+      "view": "Actual mobile homepage search and bottom navigation"
+    },
+    {
+      "file": "ds-fashion.jpg",
+      "url": "https://dsfashion.shop/",
+      "width": 1440,
+      "height": 1000,
+      "view": "Homepage collection hero",
+      "facts": "Women's fashion store with collection navigation, search, account, cart and wishlist."
+    },
+    {
+      "file": "bull-import.jpg",
+      "url": "https://bullimport.bg/",
+      "width": 1440,
+      "height": 1000,
+      "view": "Actual homepage hero with vehicle import plans and automotive navigation",
+      "scrollY": 0,
+      "identity": "Official BullImport Bulgarian vehicle import website, as named in the user request.",
+      "facts": "Homepage presents vehicle import plans, active auctions, calculation requests and recently added vehicles."
+    },
+    {
+      "file": "bull-import-logo.png",
+      "url": "https://bullimport.bg/assets/Bullimport_logo_design-DQ6WTSt0.png",
+      "view": "Original logo downloaded directly from the official site's header asset."
+    },
+    {
+      "file": "../clients_logos/wincars.svg",
+      "url": "https://wincars.bg/",
+      "view": "Unmodified original inline SVG extracted from the official website's header-logo element.",
+      "viewBox": "0 0 203 48",
+      "appearance": "White WINCARS wordmark on a transparent background; suitable for dark panels."
+    }
+  ]
+}
