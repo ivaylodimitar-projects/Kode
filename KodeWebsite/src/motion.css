@@ -1,5 +1,5 @@
 /* Content remains visible when animation is unavailable or reduced. */
-.reading-progress { position: absolute; inset: auto 0 0; height: 2px; background: #678848; transform: scaleX(0); transform-origin: left; pointer-events: none; }
+.reading-progress { position: absolute; inset: auto 0 0; height: 2px; background: var(--color-accent); transform: scaleX(0); transform-origin: left; pointer-events: none; }
 .motion-ready .reading-progress { transform: scaleX(var(--page-progress, 0)); }
 .motion-ready [data-reveal] { opacity: 0; transform: translate3d(0, 25px, 0); transition: opacity .7s ease, transform .85s cubic-bezier(.2,.65,.25,1); }
 .motion-ready [data-reveal].is-revealed, .motion-ready [data-reveal]:focus-within { opacity: 1; transform: none; }

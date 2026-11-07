@@ -97,12 +97,13 @@ function Hero() {
   return (
     <section className="hero" aria-labelledby="hero-title" data-scroll-scene>
       <div className="container">
-        <div className="hero-kicker"><p className="eyebrow"><span className="status-dot" aria-hidden="true" />Дигитално студио / Kode.bg</p><span>От първата идея до последния детайл.</span></div>
+        <div className="hero-kicker"><span>От първата идея до последния детайл.</span></div>
         <div className="hero-heading">
-          <h1 id="hero-title">Идеи, които<br /><span>работят.</span><span className="hero-spark" aria-hidden="true">✳</span></h1>
+          <h1 id="hero-title">Идеи, които<br /><span className="hero-title-line">работят.<svg className="hero-spark" viewBox="0 0 64 64" fill="none" stroke="currentColor" aria-hidden="true" focusable="false"><path d="M32 2v60M2 32h60M11 11l42 42M11 53l42-42" /></svg></span></h1>
           <div className="hero-aside"><p>Създаваме сайтове, онлайн магазини и автоматизации.<br /><span>С характер. И с мисъл за бизнеса.</span></p><a className="text-link" href="#clients">Вижте какво правим <span className="link-circle"><ArrowDown aria-hidden="true" /></span></a></div>
         </div>
-        <div className="hero-reel" aria-label="Някои от нашите проекти">
+        <div className="hero-reel-label" aria-hidden="true"><span>Избрани проекти</span><span>Плъзнете <ArrowRight /></span></div>
+        <div className="hero-reel" role="region" aria-label="Някои от нашите проекти">
           <a href="#work-title-fashion" className="reel-project reel-fashion" aria-label="Разгледайте проекта DS Fashion"><div className="reel-caption"><span>DS Fashion</span><span>Онлайн магазин <ArrowUpRight aria-hidden="true" /></span></div><div className="reel-fashion-word" aria-hidden="true">Wear<br /><em>your story.</em></div><img src={fashionScreenshot} alt="Начална страница на онлайн магазина DS Fashion" width="1440" height="1000" fetchPriority="high" /></a>
           <a href="#work-title-kar" className="reel-project reel-kar" aria-label="Разгледайте проекта Kar.bg"><div className="reel-caption"><span>Kar.bg</span><span>Уеб платформа <ArrowUpRight aria-hidden="true" /></span></div><div className="reel-kar-word" aria-hidden="true">На точното<br />място.</div><div className="reel-browser"><div className="reel-browser-bar" aria-hidden="true"><span>•••</span><span>kar.bg</span><ArrowUpRight /></div><img src={karScreenshot} alt="Автомобилните предложения в Kar.bg" width="1440" height="1000" fetchPriority="high" /></div></a>
           <a href="#work-title-bull" className="reel-project reel-bull" aria-label="Разгледайте проекта BullImport"><div className="reel-caption"><span>BullImport</span><span>Уебсайт <ArrowUpRight aria-hidden="true" /></span></div><img src={bullScreenshot} alt="Сайтът за автомобилен внос BullImport" width="1440" height="1000" /><span className="reel-bull-tag" aria-hidden="true">Следващата<br />дестинация. <MoveUpRight /></span></a>
@@ -156,7 +157,7 @@ function Process() {
 
 function FAQ() {
   const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faqs.map(faq => ({ '@type': 'Question', name: faq.question, acceptedAnswer: { '@type': 'Answer', text: faq.answer } })) }
-  return <section id="faq" className="section faq-section" tabIndex={-1} aria-labelledby="faq-title"><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} /><div className="container faq-grid"><div className="faq-heading"><p className="eyebrow">04 / Добри въпроси</p><h2 id="faq-title">Преди да<br />започнем.</h2><a href="#contact" className="text-link">Попитайте ни още <ArrowUpRight aria-hidden="true" /></a></div><div className="faq-list">{faqs.map(faq => <details key={faq.question}><summary><span>{faq.question}</span><ChevronDown aria-hidden="true" /></summary><p>{faq.answer}</p></details>)}</div></div></section>
+  return <section id="faq" className="section faq-section" tabIndex={-1} aria-labelledby="faq-title"><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} /><div className="container faq-grid"><div className="faq-heading"><p className="eyebrow">04 / Добри въпроси</p><h2 id="faq-title">Преди да <br />започнем.</h2><a href="#contact" className="text-link">Попитайте ни още <ArrowUpRight aria-hidden="true" /></a></div><div className="faq-list">{faqs.map(faq => <details key={faq.question}><summary><span>{faq.question}</span><ChevronDown aria-hidden="true" /></summary><p>{faq.answer}</p></details>)}</div></div></section>
 }
 
 function Footer() {
