@@ -1,0 +1,7 @@
+Tool: built-in imagegen
+Operation: background-extraction
+Asset: kode-logo-light.png
+
+Use case: background-extraction. Asset type: existing company logo for a website. Input image is the edit target, not a style reference. Precisely remove the black rectangular background from the supplied KODE.BG logo and make it genuinely transparent with an alpha channel. Preserve the existing logo identity: exact K letter, robot head forming O with antenna, side ears and white face with two teal eyes, D, E, and exact text ".BG"; preserve letter proportions, relative placement and spacing. Keep the entire horizontal logo intact. Remove all black background including between letters and in enclosed letter counters, remove the dark outline/shadow fringes on .BG for crisp clean edges. No new designs, no restyling, no added content, no mockup, no background pattern or checkerboard. Deliver one single clean tightly framed horizontal transparent PNG logo with only modest transparent margin. Variant for LIGHT website surfaces: retain original deep teal KODE/robot; change ONLY the .BG suffix to solid deep charcoal #191a19 (including the period), so it is readable on a pale background. White robot face remains white. True transparent background.
+
+Website integration: The same transparent asset is used on both surfaces. The dark-surface variant renders a white .BG suffix with a CSS-filtered overlay clipped to the suffix, preserving the exact same alpha silhouette.

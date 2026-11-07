@@ -6,24 +6,33 @@
     {
       "file": "kar-bg.jpg",
       "url": "https://www.kar.bg/",
+      "capturedOn": "2026-11-07",
+      "capturedAt": "2026-11-07T11:23:19.832Z",
       "width": 1440,
       "height": 1000,
+      "scrollY": 0,
       "view": "Homepage vehicle search and filters",
       "facts": "Automotive listings platform with category, make, location, fuel and transmission filters."
     },
     {
       "file": "kar-bg-listings.jpg",
       "url": "https://www.kar.bg/",
+      "capturedOn": "2026-11-07",
+      "capturedAt": "2026-11-07T11:24:30.079Z",
       "width": 1440,
       "height": 1000,
+      "scrollY": 751,
       "view": "Homepage scrolled to recent listings, with the original sticky branded header visible",
       "facts": "Vehicle cards show photos, model, year, price, mileage, fuel and location. Listing content and prices are a snapshot, not current offers on Kode."
     },
     {
       "file": "kar-bg-mobile.jpg",
       "url": "https://www.kar.bg/",
+      "capturedOn": "2026-11-07",
+      "capturedAt": "2026-11-07T11:24:59.424Z",
       "width": 390,
       "height": 844,
+      "scrollY": 0,
       "view": "Actual mobile homepage search and bottom navigation"
     },
     {

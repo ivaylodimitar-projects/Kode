@@ -1,80 +1,103 @@
-import { useRef } from 'react'
-import { ArrowLeft, ArrowRight, ArrowUpRight, Settings2 } from 'lucide-react'
+import { ArrowDown, ArrowRight, ArrowUpRight, Workflow } from 'lucide-react'
 import { projects } from '../data/projects'
-import { useHorizontalShowcase } from '../hooks/useHorizontalShowcase'
 import './Clients.css'
 
+type Project = (typeof projects)[number]
+
+function WebsiteProject({ project, index }: { project: Project; index: number }) {
+  return (
+    <article className={`work-project work-project-${project.id}`} aria-labelledby={`work-title-${project.id}`} data-reveal>
+      <a className="work-artwork" href={project.url} target="_blank" rel="noreferrer" aria-label={`Вижте проекта ${project.name} (отваря се в нов раздел)`}>
+        <div className="work-artwork-top" aria-hidden="true">
+          <span>{project.category}</span>
+          <span className="work-artwork-index">0{index + 1} / KODE</span>
+        </div>
+        <span className="work-stage-word" aria-hidden="true">{project.id === 'kar' ? 'kar.' : project.id === 'fashion' ? 'ds.' : 'bull.'}</span>
+        <div className="work-screen-scene">
+          <div className="work-browser">
+            <div className="work-browser-bar" aria-hidden="true">
+              <span className="work-browser-dots"><i /><i /><i /></span>
+              <span>{project.domain}</span>
+              <ArrowUpRight />
+            </div>
+            <img className="work-screenshot" src={project.screenshot} alt={`${project.name} — изглед от сайта`} width="1440" height="1000" loading="lazy" decoding="async" />
+          </div>
+          {project.mobileScreenshot && (
+            <div className="work-phone" aria-hidden="true">
+              <div className="work-phone-screen">
+                <div className="work-phone-safe-area"><span className="work-phone-speaker" /></div>
+                <img src={project.mobileScreenshot} alt="" width="390" height="844" loading="lazy" decoding="async" />
+              </div>
+            </div>
+          )}
+        </div>
+        <span className="work-open-label" aria-hidden="true">Вижте проекта <ArrowUpRight /></span>
+        <span className="work-artwork-footer" aria-hidden="true">{project.id === 'kar' ? 'Открийте. Изберете. Потеглете.' : project.id === 'fashion' ? 'Мода с дигитално присъствие.' : 'Следващата дестинация: вашият гараж.'}</span>
+      </a>
+      <div className="work-caption">
+        <div className="work-caption-heading">
+          <h3 id={`work-title-${project.id}`}><a href={project.url} target="_blank" rel="noreferrer">{project.name}<ArrowUpRight aria-hidden="true" /><span className="sr-only"> (отваря се в нов раздел)</span></a></h3>
+          <p className="work-headline">{project.headline}</p>
+        </div>
+        <div className="work-caption-detail">
+          <p className="work-description">{project.description}</p>
+          <ul className="work-features" aria-label={`Функционалности на ${project.name}`}>
+            {project.features.map(feature => <li key={feature}>{feature}</li>)}
+          </ul>
+        </div>
+      </div>
+    </article>
+  )
+}
+
+function AutomationProject({ project }: { project: Project }) {
+  return (
+    <article className="work-automation" aria-labelledby="work-automation-title" data-reveal>
+      <div className="work-automation-copy">
+        <p className="work-kicker"><span aria-hidden="true" />Зад кулисите на бизнеса</p>
+        <h3 id="work-automation-title">Рутината е за<br /><span>автоматизиране.</span></h3>
+        <p className="work-automation-description">{project.description}</p>
+        <a href="#contact" className="work-automation-link">Да улесним и вашата работа <ArrowUpRight aria-hidden="true" /></a>
+      </div>
+      <div className="work-network">
+        <div className="work-network-source" aria-hidden="true"><Workflow /><span>kode<span className="work-source-dot">.</span></span><span className="work-source-label">AUTOMATION</span></div>
+        <div className="work-network-lines" aria-hidden="true"><span /><span /><span /></div>
+        <ul className="work-dealers" aria-label="Клиенти на автоматизацията на Kode">
+          {project.clients?.map(client => (
+            <li className={`work-dealer work-dealer-${client.id}`} key={client.id}>
+              <div className="work-dealer-logo"><img src={client.logo} alt="" width="160" height="160" loading="lazy" decoding="async" /></div>
+              <span>{client.name}</span>
+            </li>
+          ))}
+        </ul>
+        <p className="work-network-note">Едно решение. Различни екипи.</p>
+      </div>
+    </article>
+  )
+}
+
 export function Clients() {
-  const sectionRef = useRef<HTMLElement>(null)
-  const viewportRef = useRef<HTMLDivElement>(null)
-  const trackRef = useRef<HTMLOListElement>(null)
-  const { activeIndex, goTo, onKeyDown } = useHorizontalShowcase(sectionRef, viewportRef, trackRef, projects.length)
+  const websiteProjects = projects.filter(project => project.kind === 'website')
+  const automationProject = projects.find(project => project.kind === 'automation')
 
   return (
-    <section ref={sectionRef} id="clients" className="work-section" tabIndex={-1} aria-labelledby="clients-title">
-      <div className="work-sticky">
-        <div className="container work-heading">
+    <section id="clients" className="work-section" tabIndex={-1} aria-labelledby="clients-title">
+      <div className="container">
+        <div className="work-heading" data-reveal>
           <div>
-            <p className="eyebrow">03 / Избрани партньорства</p>
-            <h2 id="clients-title">Добрият код.<span className="muted"> В реалния бизнес.</span></h2>
+            <p className="eyebrow">01 / Избрани проекти</p>
+            <h2 id="clients-title">Добрият код.<br /><span>В реалния свят.</span></h2>
           </div>
-          <p className="work-intro">Компаниите, с които работим.<br />Уебсайтове и автоматизации за техния бизнес.</p>
+          <div className="work-heading-aside">
+            <p>Различни бизнеси.<br />Един и същ подход —<br />добре обмислен, добре направен.</p>
+            <ArrowDown aria-hidden="true" />
+          </div>
         </div>
-
-        <div ref={viewportRef} className="work-viewport" tabIndex={0} role="region" aria-label="Галерия с клиентски проекти и автоматизации" aria-describedby="work-instructions" onKeyDown={onKeyDown}>
-          <ol ref={trackRef} className="work-track">
-            {projects.map((project, index) => (
-              <li className="work-slide" key={project.id}>
-                <article className={`work-project work-project-${project.id}`} aria-labelledby={`work-title-${project.id}`}>
-                  <div className="work-artwork">
-                    <div className="work-artwork-label"><span>{project.category}</span><span aria-hidden="true">KODE / {project.kind === 'automation' ? 'AUTOMATION' : 'SELECTED WORK'}</span></div>
-                    <div className="work-screen-scene">
-                      {project.screenshot ? (
-                        <div className="work-browser">
-                          <div className="work-browser-bar" aria-hidden="true"><span className="work-browser-dots"><i /><i /><i /></span><span>{project.domain}</span><ArrowUpRight /></div>
-                          <img className="work-screenshot" src={project.screenshot} alt={`${project.name} — изглед от сайта`} width="1440" height="1000" loading="lazy" decoding="async" />
-                        </div>
-                      ) : project.clients ? (
-                        <div className="work-automation-clients">
-                          <p className="work-automation-label"><Settings2 aria-hidden="true" /><span>Използват автоматизацията на Kode</span></p>
-                          <ul className="work-dealer-grid" aria-label="Дилъри, които използват автоматизацията">
-                            {project.clients.map(client => (
-                              <li className={`work-dealer work-dealer-${client.id}`} key={client.id}>
-                                <span className="work-dealer-logo"><img src={client.logo} alt="" width="160" height="160" loading="lazy" decoding="async" /></span>
-                                <span className="work-dealer-name">{client.name}</span>
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                      ) : (
-                        <div className="work-brand-display">
-                          {project.logo && <img src={project.logo} alt={project.name} width="260" height="140" loading="lazy" />}
-                        </div>
-                      )}
-                      {project.mobileScreenshot && <div className="work-phone" aria-hidden="true"><span className="work-phone-speaker" /><img src={project.mobileScreenshot} alt="" width="390" height="844" loading="lazy" decoding="async" /></div>}
-                    </div>
-                    <div className="work-artwork-footer"><span>{project.kind === 'website' ? 'Уебсайт / Реален изглед' : 'Автоматизация / Нашите клиенти'}</span><span aria-hidden="true">0{index + 1} — 0{projects.length}</span></div>
-                  </div>
-
-                  <div className="work-copy">
-                    <div className="work-project-meta"><span className="work-project-type">{project.category}</span><span className="work-number" aria-hidden="true">/ 0{index + 1}</span></div>
-                    <h3 id={`work-title-${project.id}`}>{project.name}</h3>
-                    <p className="work-headline">{project.headline}</p>
-                    <p className="work-description">{project.description}</p>
-                    <ul className="work-features" aria-label={project.kind === 'website' ? 'В сайта' : 'За партньорството'}>{project.features.map(feature => <li key={feature}>{feature}</li>)}</ul>
-                    {project.kind === 'website' && project.url && <a className="work-visit" href={project.url} target="_blank" rel="noreferrer"><span>Разгледайте сайта<span className="sr-only"> на {project.name} (отваря се в нов раздел)</span></span><span className="work-visit-arrow"><ArrowUpRight aria-hidden="true" /></span></a>}
-                  </div>
-                </article>
-              </li>
-            ))}
-          </ol>
+        <div className="work-grid">
+          {websiteProjects.map((project, index) => <WebsiteProject key={project.id} project={project} index={index} />)}
         </div>
-
-        <div className="container work-navigation">
-          <p id="work-instructions" className="work-instructions"><span className="work-scroll-label">Скролирайте, за да разгледате</span><span className="work-swipe-label">Плъзнете, за да разгледате</span><ArrowRight aria-hidden="true" /><span className="sr-only">Използвайте и бутоните или стрелките наляво и надясно, когато галерията е на фокус.</span></p>
-          <nav className="work-tabs" aria-label="Изберете проект">{projects.map((project, index) => <button className="work-tab" key={project.id} type="button" aria-label={`Покажи ${project.name}`} aria-current={activeIndex === index ? 'true' : undefined} onClick={() => goTo(index)}><span className="work-tab-number" aria-hidden="true">0{index + 1}</span><span className="work-tab-name">{project.name}</span></button>)}</nav>
-          <div className="work-controls"><span className="work-counter" aria-live="polite" aria-atomic="true"><span className="sr-only">Проект </span>0{activeIndex + 1}<span className="work-counter-total"> / 0{projects.length}</span></span><button className="work-prev" type="button" aria-label="Предишен проект" disabled={activeIndex === 0} onClick={() => goTo(activeIndex - 1)}><ArrowLeft aria-hidden="true" /></button><button className="work-next" type="button" aria-label="Следващ проект" disabled={activeIndex === projects.length - 1} onClick={() => goTo(activeIndex + 1)}><ArrowRight aria-hidden="true" /></button></div>
-        </div>
+        {automationProject && <AutomationProject project={automationProject} />}
+        <a className="work-next-conversation" href="#contact"><span>Вашият проект може да е следващият.</span><span>Нека го обсъдим <ArrowRight aria-hidden="true" /></span></a>
       </div>
     </section>
   )
