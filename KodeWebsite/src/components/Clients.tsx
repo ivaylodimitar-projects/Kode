@@ -1,12 +1,13 @@
 import { ArrowDown, ArrowRight, ArrowUpRight, Workflow } from 'lucide-react'
 import { projects } from '../data/projects'
+import { FitnessProject } from './FitnessProject'
 import './Clients.css'
 
 type Project = (typeof projects)[number]
 
 function WebsiteProject({ project, index }: { project: Project; index: number }) {
   return (
-    <article className={`work-project work-project-${project.id}`} aria-labelledby={`work-title-${project.id}`} data-reveal>
+    <article className={`work-project work-project-${project.id}`} aria-labelledby={`work-title-${project.id}`} data-reveal data-reveal-order={index}>
       <a className="work-artwork" href={project.url} target="_blank" rel="noreferrer" aria-label={`Вижте проекта ${project.name} (отваря се в нов раздел)`}>
         <div className="work-artwork-top" aria-hidden="true">
           <span>{project.category}</span>
@@ -77,7 +78,7 @@ function AutomationProject({ project }: { project: Project }) {
 }
 
 export function Clients() {
-  const websiteProjects = projects.filter(project => project.kind === 'website')
+  const portfolioProjects = projects.filter(project => project.kind === 'website' || project.kind === 'software')
   const automationProject = projects.find(project => project.kind === 'automation')
 
   return (
@@ -94,10 +95,12 @@ export function Clients() {
           </div>
         </div>
         <div className="work-grid">
-          {websiteProjects.map((project, index) => <WebsiteProject key={project.id} project={project} index={index} />)}
+          {portfolioProjects.map((project, index) => project.kind === 'software'
+            ? <FitnessProject key={project.id} project={project} index={index} />
+            : <WebsiteProject key={project.id} project={project} index={index} />)}
         </div>
         {automationProject && <AutomationProject project={automationProject} />}
-        <a className="work-next-conversation" href="#contact"><span>Вашият проект може да е следващият.</span><span>Нека го обсъдим <ArrowRight aria-hidden="true" /></span></a>
+        <a className="work-next-conversation" href="#contact" data-reveal><span>Вашият проект може да е следващият.</span><span>Нека го обсъдим <ArrowRight aria-hidden="true" /></span></a>
       </div>
     </section>
   )

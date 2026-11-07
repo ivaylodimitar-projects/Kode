@@ -57,7 +57,7 @@ export function Contact() {
             </div>
           </div>
 
-          <div className="contact-invitation" data-reveal>
+          <div className="contact-invitation" data-reveal data-reveal-order="1">
             <span className="contact-orbit-note">Всяко начало е един разговор.</span>
             <a className="contact-circle" href={projectEmailHref} aria-label={`Да поговорим. Напишете ни имейл: ${subject}`}>
               <ArrowUpRight aria-hidden="true" />
@@ -69,7 +69,7 @@ export function Contact() {
         </div>
 
         <address className="contact-direct">
-          <div className="contact-email-block">
+          <div className="contact-email-block" data-reveal>
             <span className="contact-detail-label">Един имейл разстояние</span>
             <div className="contact-email-row">
               <a className="contact-email-link" href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
@@ -82,7 +82,7 @@ export function Contact() {
               {copyState === 'failed' && 'Изберете адреса, за да го копирате, или натиснете, за да ни пишете.'}
             </span>
           </div>
-          <div className="contact-phone-block">
+          <div className="contact-phone-block" data-reveal data-reveal-order="1">
             <span className="contact-detail-label">Ако предпочитате да се чуем</span>
             {phoneNumbers.map(phone => (
               <a className="contact-phone-link" key={phone} href={`tel:${phone.replace(/\s/g, '')}`}>

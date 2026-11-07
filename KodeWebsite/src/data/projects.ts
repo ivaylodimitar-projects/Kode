@@ -11,7 +11,7 @@ import bullScreenshot from '../assets/projects/bull-import.jpg'
 type Project = {
   id: string
   name: string
-  kind: 'website' | 'automation'
+  kind: 'website' | 'software' | 'automation'
   category: string
   headline: string
   description: string
@@ -24,7 +24,7 @@ type Project = {
   url?: string
 }
 
-// Distinguish website projects from customers who only use Kode's automation.
+// Keep portfolio projects separate from customers who use Kode's automation.
 export const projects: Project[] = [
   {
     id: 'kar', name: 'Kar.bg', kind: 'website', category: 'Автомобилна платформа',
@@ -46,6 +46,12 @@ export const projects: Project[] = [
     description: 'Сайт за внос на автомобили от САЩ, Канада и Южна Корея. Автомобилни предложения, доставени автомобили и директно запитване към екипа.',
     features: ['Автомобилни предложения', 'Доставени автомобили', 'Запитвания'],
     screenshot: bullScreenshot, domain: 'bullimport.bg', url: 'https://bullimport.bg/',
+  },
+  {
+    id: 'fitness', name: 'Gymflow', kind: 'software', category: 'Система за управление на фитнес',
+    headline: 'Абонаментите под контрол.',
+    description: 'Система за управление на фитнес — от клиентите и техните абонаменти до подновяванията и статуса им. Gymflow събира ежедневната работа на едно място.',
+    features: ['Клиенти', 'Абонаменти', 'Подновявания'],
   },
   {
     id: 'automation', name: 'Автоматизация', kind: 'automation', category: 'За автомобилни дилъри',

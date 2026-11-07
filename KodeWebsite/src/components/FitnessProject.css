@@ -1,0 +1,72 @@
+.work-project-fitness {
+  display: grid;
+  grid-column: 1 / -1;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr);
+  align-items: center;
+  gap: 56px;
+}
+
+.fitness-artwork {
+  position: relative;
+  isolation: isolate;
+  min-width: 0;
+  aspect-ratio: 1.3;
+  overflow: hidden;
+  border-radius: 8px;
+  background: #c4d9d3;
+  color: var(--color-accent);
+}
+
+.fitness-artwork-top {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 26px 28px;
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+.fitness-artwork-index { flex-shrink: 0; font-family: Consolas, monospace; font-size: 10px; letter-spacing: .06em; }
+.fitness-artwork-shapes { position: absolute; inset: 0; }
+.fitness-orbit { position: absolute; right: -20%; bottom: -65%; width: 110%; aspect-ratio: 1; border: 1px solid #03504a24; border-radius: 50%; }
+.fitness-orbit::before { position: absolute; inset: 15%; border: 1px solid #03504a24; border-radius: 50%; content: ''; }
+.fitness-word { position: absolute; left: 6%; bottom: 7%; color: #03504a80; font-size: clamp(50px, 7.8vw, 112px); font-weight: 600; line-height: 1; letter-spacing: -.075em; }
+.fitness-badge { position: absolute; top: 28%; right: 12%; display: grid; place-items: center; width: 32%; aspect-ratio: 1; border: 1px solid #ffffff40; border-radius: 50%; background: var(--color-accent); color: var(--color-on-accent); box-shadow: 0 20px 35px -18px #03504a66; transform: rotate(-12deg); }
+.fitness-badge svg { width: 52%; height: 52%; stroke-width: 1.25; }
+
+.work-project-fitness .fitness-caption { min-width: 0; max-width: 470px; gap: 22px; padding: 24px 24px 24px 0; }
+.work-project-fitness .fitness-caption h3 { font-size: clamp(28px, 3vw, 40px); line-height: 1.12; letter-spacing: -.045em; overflow-wrap: anywhere; }
+.work-project-fitness .fitness-caption h3 a { align-items: flex-start; }
+.fitness-caption h3 a > span:first-child { min-width: 0; }
+.fitness-caption h3 svg { margin-top: 5px; }
+.fitness-caption .work-headline { margin-top: 14px; }
+.fitness-contact-link { display: inline-flex; align-items: center; gap: 14px; width: fit-content; min-height: 44px; color: var(--color-accent); font-size: 13px; line-height: 1.5; }
+.fitness-contact-link:hover { text-decoration: underline; text-underline-offset: 5px; }
+.fitness-contact-link svg { width: 18px; height: 18px; }
+
+@media (max-width: 1050px) {
+  .work-project-fitness { gap: 30px; }
+  .fitness-artwork-top { padding: 22px; }
+  .work-project-fitness .fitness-caption { padding-right: 0; }
+}
+
+@media (max-width: 760px) {
+  .work-project-fitness { grid-template-columns: minmax(0, 1fr); gap: 0; }
+  .fitness-artwork { aspect-ratio: 1.35; }
+  .fitness-artwork-top { padding: 18px; }
+  .fitness-artwork-index { font-size: 9px; }
+  .fitness-word { font-size: clamp(54px, 18vw, 120px); }
+  .fitness-badge { top: 29%; right: 12%; width: 31%; }
+  .work-project-fitness .fitness-caption { max-width: none; gap: 14px; padding: 22px 0 0; }
+  .work-project-fitness .fitness-caption h3 { font-size: clamp(28px, 6vw, 36px); line-height: 1.18; }
+  .fitness-caption .work-headline { margin-top: 10px; }
+  .fitness-contact-link { margin-top: 2px; font-size: 14px; }
+}
+
+@media (max-width: 420px) {
+  .fitness-artwork-top { padding: 16px 14px; font-size: 10px; }
+  .fitness-artwork-index { font-size: 8px; }
+}

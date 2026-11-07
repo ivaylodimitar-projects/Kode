@@ -1,0 +1,22 @@
+.collapse {
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  transition: grid-template-rows 340ms cubic-bezier(.22, .68, .25, 1), opacity 220ms ease;
+}
+
+.collapse.is-open {
+  grid-template-rows: 1fr;
+  opacity: 1;
+}
+
+.collapse-content {
+  min-height: 0;
+  overflow: hidden;
+}
+
+.collapse-content :focus-visible { outline-offset: -2px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .collapse { transition: none; }
+}

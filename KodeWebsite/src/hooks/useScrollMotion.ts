@@ -12,6 +12,7 @@ export function useScrollMotion(rootRef: RefObject<HTMLDivElement | null>) {
     const reveals = [...root.querySelectorAll<HTMLElement>('[data-reveal]')]
     const scenes = [...root.querySelectorAll<HTMLElement>('[data-scroll-scene]')]
     const originallyRevealed = new Set(reveals.filter((element) => element.classList.contains('is-revealed')))
+    const originallyInstant = new Set(reveals.filter((element) => element.classList.contains('is-reveal-instant')))
     const sceneValues = new Map<HTMLElement, string>()
     let pageValue = ''
     let frame: number | null = null
@@ -19,13 +20,19 @@ export function useScrollMotion(rootRef: RefObject<HTMLDivElement | null>) {
     let observer: IntersectionObserver | null = null
     let resizeObserver: ResizeObserver | null = null
 
-    const showAll = () => reveals.forEach((element) => element.classList.add('is-revealed'))
+    const reveal = (element: Element, instant = false) => {
+      element.classList.add('is-revealed')
+      if (instant) element.classList.add('is-reveal-instant')
+      observer?.unobserve(element)
+    }
+    const showAll = () => reveals.forEach((element) => reveal(element, true))
     const restore = () => {
       root.classList.remove('motion-ready')
       root.style.removeProperty('--page-progress')
       scenes.forEach((element) => element.style.removeProperty('--scene-progress'))
       reveals.forEach((element) => {
         if (!originallyRevealed.has(element)) element.classList.remove('is-revealed')
+        if (!originallyInstant.has(element)) element.classList.remove('is-reveal-instant')
       })
     }
 
@@ -66,18 +73,27 @@ export function useScrollMotion(rootRef: RefObject<HTMLDivElement | null>) {
       if (enabled && frame === null) frame = window.requestAnimationFrame(update)
     }
 
-    const revealFocused = (target: EventTarget | null) => {
-      if (!(target instanceof Element)) return
-      // A focused link can be nested inside more than one reveal container.
+    const revealTarget = (target: EventTarget | null) => {
+      if (!(target instanceof Element) || !root.contains(target)) return
+      // Anchor destinations can wrap reveal groups or sit inside a hidden card.
       reveals.forEach((element) => {
-        if (element.contains(target)) {
-          element.classList.add('is-revealed')
-          observer?.unobserve(element)
-        }
+        if (element.contains(target) || target.contains(element)) reveal(element, true)
       })
     }
 
-    const onFocus = (event: FocusEvent) => revealFocused(event.target)
+    const onFocus = (event: FocusEvent) => revealTarget(event.target)
+    const revealHash = () => {
+      if (!window.location.hash) return
+      try {
+        revealTarget(document.getElementById(decodeURIComponent(window.location.hash.slice(1))))
+      } catch {
+        // A malformed URL fragment must not interfere with normal scrolling.
+      }
+    }
+    const onFind = (event: KeyboardEvent) => {
+      // Keep browser Find able to reach every passage without waiting for motion.
+      if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === 'f') showAll()
+    }
 
     const applyPreference = () => {
       enabled = false
@@ -95,17 +111,18 @@ export function useScrollMotion(rootRef: RefObject<HTMLDivElement | null>) {
       try {
         observer = new IntersectionObserver((entries) => {
           entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add('is-revealed')
-              observer?.unobserve(entry.target)
-            }
+            if (entry.isIntersecting) reveal(entry.target)
           })
-        }, { rootMargin: '0px 0px -45px 0px', threshold: 0 })
+        }, { rootMargin: '0px 0px -24px 0px', threshold: 0 })
 
+        // Never hide content already on screen, including restored scroll positions.
+        const alreadyInView = reveals.filter((element) => element.getBoundingClientRect().top < window.innerHeight)
+        alreadyInView.forEach((element) => reveal(element, true))
         reveals.forEach((element) => {
           if (!element.classList.contains('is-revealed')) observer?.observe(element)
         })
-        revealFocused(document.activeElement)
+        revealHash()
+        revealTarget(document.activeElement)
         enabled = true
         update()
         root.classList.add('motion-ready')
@@ -120,6 +137,8 @@ export function useScrollMotion(rootRef: RefObject<HTMLDivElement | null>) {
 
     window.addEventListener('scroll', schedule, { passive: true })
     window.addEventListener('resize', schedule, { passive: true })
+    window.addEventListener('hashchange', revealHash)
+    window.addEventListener('keydown', onFind)
     root.addEventListener('focusin', onFocus)
     preference.addEventListener('change', applyPreference)
 
@@ -137,6 +156,8 @@ export function useScrollMotion(rootRef: RefObject<HTMLDivElement | null>) {
       resizeObserver?.disconnect()
       window.removeEventListener('scroll', schedule)
       window.removeEventListener('resize', schedule)
+      window.removeEventListener('hashchange', revealHash)
+      window.removeEventListener('keydown', onFind)
       root.removeEventListener('focusin', onFocus)
       preference.removeEventListener('change', applyPreference)
       restore()
